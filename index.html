@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRDO Research Internship | Defence Innovation Journey</title>
+    <style>
+        /* ============================================
+           PROFESSIONAL DARK NAVY BLUE THEME
+        ============================================ */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            /* Professional Dark Navy Blue Theme */
+            --bg-primary: #0a1628;
+            --bg-secondary: #112240;
+            --bg-tertiary: #1a2942;
+            --accent-gold: #f59e0b;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-emerald: #10b981;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-dim: #64748b;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #112240 50%, #1a2942 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+            animation: gradientShift 20s ease infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           HEADER WITH LOGO
+        ============================================ */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .drdo-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(245, 158, 11, 0.4));
+            transition: all 0.3s ease;
+        }
+
+        .drdo-logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 15px 40px rgba(245, 158, 11, 0.6));
+        }
+
+        .title-section {
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(59, 130, 246, 0.15));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #f59e0b 0%, #3b82f6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        /* Stats with glass morphism */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           RESEARCH CONTRIBUTIONS SECTION
+        ============================================ */
+        .research-section {
+            margin: 60px 0;
+            padding: 60px 0;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .research-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .research-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .research-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .research-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-blue));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .research-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .research-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.2);
+        }
+
+        .research-label {
+            display: inline-block;
+            padding: 6px 16px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(59, 130, 246, 0.15));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .research-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .research-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 12px 18px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 10px;
+        }
+
+        .research-status.completed {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .research-status.in-progress {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .status-icon {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .status-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-emerald);
+        }
+
+        .research-status.in-progress .status-text {
+            color: var(--accent-gold);
+        }
+
+        .research-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           MONTH CARDS - NEW DESIGN
+        ============================================ */
+        .month-section {
+            margin-bottom: 25px;
+        }
+
+        .month-button {
+            width: 100%;
+            padding: 25px 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .month-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .month-button:hover::before {
+            left: 100%;
+        }
+
+        .month-button:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-gold);
+            transform: translateX(5px);
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+        }
+
+        .month-button.active {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(59, 130, 246, 0.1));
+            border-color: var(--accent-gold);
+            box-shadow: 0 5px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .month-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1;
+        }
+
+        .month-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .month-dates {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .month-arrow {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .month-button.active .month-arrow {
+            transform: rotate(90deg);
+        }
+
+        /* ============================================
+           WEEKS - GRADIENT CARDS
+        ============================================ */
+        .weeks-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+            opacity: 0;
+            margin-top: 20px;
+        }
+
+        .weeks-container.show {
+            max-height: 5000px;
+            opacity: 1;
+        }
+
+        .week-item {
+            margin-bottom: 15px;
+        }
+
+        .week-button {
+            width: 100%;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(245, 158, 11, 0.1));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .week-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, var(--accent-gold), var(--accent-blue));
+            border-radius: 0 4px 4px 0;
+            transition: height 0.3s ease;
+            transform: translateY(-50%);
+        }
+
+        .week-button:hover::after {
+            height: 60%;
+        }
+
+        .week-button:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(245, 158, 11, 0.15));
+            border-color: var(--accent-blue);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .week-button.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(245, 158, 11, 0.2));
+            border-color: var(--accent-blue);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .week-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .week-label {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+
+        .week-range {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .week-arrow {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            color: var(--accent-blue);
+        }
+
+        .week-button.active .week-arrow {
+            transform: rotate(90deg);
+        }
+
+        /* ============================================
+           DAYS - MODERN GRID
+        ============================================ */
+        .days-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            margin-top: 15px;
+            padding-left: 15px;
+        }
+
+        .days-container.show {
+            max-height: 3000px;
+            opacity: 1;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .day-button {
+            padding: 18px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(59, 130, 246, 0.08));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(59, 130, 246, 0.15));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .day-button:hover::before {
+            opacity: 1;
+        }
+
+        .day-button:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .day-number {
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .day-date {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px 20px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-dim);
+        }
+
+        .footer-text {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .footer-highlight {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* ============================================
+           ANIMATIONS
+        ============================================ */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+        ============================================ */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+
+            .drdo-logo {
+                width: 90px;
+                height: 90px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .month-button {
+                padding: 20px 20px;
+            }
+
+            .month-name {
+                font-size: 1.1rem;
+            }
+
+            .week-button {
+                padding: 18px 20px;
+                font-size: 0.95rem;
+            }
+
+            .days-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .days-container {
+                padding-left: 10px;
+            }
+
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-card {
+                padding: 28px;
+            }
+
+            .research-section {
+                padding: 40px 0;
+                margin: 40px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .drdo-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .month-button {
+                padding: 18px 18px;
+            }
+
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: rgba(245, 158, 11, 0.3);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles for ambiance -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- ============================================
+             HEADER WITH DRDO LOGO
+        ============================================ -->
+        <header class="header">
+            <div class="logo-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Emblem_of_DRDO.png" 
+                     alt="DRDO Logo" 
+                     class="drdo-logo">
+            </div>
+            
+            <div class="title-section">
+                <div class="badge">Defence Research Internship</div>
+                <h1>Innovation Journey</h1>
+                <p class="subtitle">Research Excellence | August - December 2025</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">152</span>
+                    <span class="stat-label">Days</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Months</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">22</span>
+                    <span class="stat-label">Weeks</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Papers</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============================================
+             RESEARCH CONTRIBUTIONS SECTION
+        ============================================ -->
+        <section class="research-section">
+            <div class="research-header">
+                <h2 class="research-title">Research Contributions</h2>
+                <p class="research-subtitle">
+                    Advancing defence technology through innovative research and practical applications
+                </p>
+            </div>
+            
+            <div class="research-grid">
+                <!-- Research Paper 1 -->
+                <div class="research-card">
+                    <span class="research-label">Research Paper 1</span>
+                    <h3>Innovation Orientation Index for Defence R&D</h3>
+                    <div class="research-status completed">
+                        <span class="status-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="color: #10b981;">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <span class="status-text">Accepted & Presented</span>
+                    </div>
+                    <p class="research-description">
+                        Multi-metric framework for measuring organizational innovation capacity in defence research organizations, focusing on explainability and institutional defensibility.
+                    </p>
+                </div>
+
+                <!-- Research Paper 2 -->
+                <div class="research-card">
+                    <span class="research-label">Research Paper 2</span>
+                    <h3>Deterministic Verification Architecture for Defence Information</h3>
+                    <div class="research-status in-progress">
+                        <span class="status-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="color: #f59e0b;">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h4.59l-2.1 1.95a.75.75 0 001.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 10-1.02 1.1l2.1 1.95H6.75z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <span class="status-text">Manuscript Completed</span>
+                    </div>
+                    <p class="research-description">
+                        Evidence-centric verification system design addressing unique requirements of defence information validation with explicit reasoning chains.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             MAIN CONTENT - MONTHS
+        ============================================ -->
+        <main id="monthsContainer">
+            <!-- Months will be dynamically generated here -->
+        </main>
+
+        <!-- ============================================
+             FOOTER
+        ============================================ -->
+        <footer class="footer">
+            <p class="footer-text">
+                <span class="footer-highlight">DRDO Research Internship</span> | August 2025 - December 2025
+            </p>
+            <p class="footer-text">
+                Defence Research and Development Organisation, Government of India
+            </p>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         JAVASCRIPT - ALL LOGIC
+    ============================================ -->
+    <script>
+        // ============================================
+        // PARTICLES ANIMATION
+        // ============================================
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // ============================================
+        // DATA STRUCTURE
+        // ============================================
+        const GITHUB_REPO = "https://github.com/DevxAman/TR_104-DRDO/blob/main/diary";
+        
+        const internshipData = [
+            {
+                month: "August 2025",
+                dateRange: "Aug 1 - Aug 31",
+                weeks: [
+                    { 
+                        name: "Week 1", 
+                        range: "Aug 1-3",
+                        days: [
+                            { day: "Day 1", date: "2025-08-01" },
+                            { day: "Day 2", date: "2025-08-02" },
+                            { day: "Day 3", date: "2025-08-03" }
+                        ]
+                    },
+                    { 
+                        name: "Week 2", 
+                        range: "Aug 4-10",
+                        days: [
+                            { day: "Day 4", date: "2025-08-04" },
+                            { day: "Day 5", date: "2025-08-05" },
+                            { day: "Day 6", date: "2025-08-06" },
+                            { day: "Day 7", date: "2025-08-07" },
+                            { day: "Day 8", date: "2025-08-08" },
+                            { day: "Day 9", date: "2025-08-09" },
+                            { day: "Day 10", date: "2025-08-10" }
+                        ]
+                    },
+                    { 
+                        name: "Week 3", 
+                        range: "Aug 11-17",
+                        days: [
+                            { day: "Day 11", date: "2025-08-11" },
+                            { day: "Day 12", date: "2025-08-12" },
+                            { day: "Day 13", date: "2025-08-13" },
+                            { day: "Day 14", date: "2025-08-14" },
+                            { day: "Day 15", date: "2025-08-16" },
+                            { day: "Day 16", date: "2025-08-17" }
+                        ]
+                    },
+                    { 
+                        name: "Week 4", 
+                        range: "Aug 18-24",
+                        days: [
+                            { day: "Day 17", date: "2025-08-18" },
+                            { day: "Day 18", date: "2025-08-19" },
+                            { day: "Day 19", date: "2025-08-20" },
+                            { day: "Day 20", date: "2025-08-21" },
+                            { day: "Day 21", date: "2025-08-22" },
+                            { day: "Day 22", date: "2025-08-23" },
+                            { day: "Day 23", date: "2025-08-24" }
+                        ]
+                    },
+                    { 
+                        name: "Week 5", 
+                        range: "Aug 25-31",
+                        days: [
+                            { day: "Day 24", date: "2025-08-25" },
+                            { day: "Day 25", date: "2025-08-26" },
+                            { day: "Day 26", date: "2025-08-27" },
+                            { day: "Day 27", date: "2025-08-28" },
+                            { day: "Day 28", date: "2025-08-29" },
+                            { day: "Day 29", date: "2025-08-30" },
+                            { day: "Day 30", date: "2025-08-31" }
+                        ]
+                    }
+                ]
+            },
+            {
+                month: "September 2025",
+                dateRange: "Sep 1 - Sep 30",
+                weeks: [
+                    { 
+                        name: "Week 6", 
+                        range: "Sep 1-7",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${31 + i}`, 
+                            date: `2025-09-${String(i + 1).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 7", 
+                        range: "Sep 8-14",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${38 + i}`, 
+                            date: `2025-09-${String(i + 8).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 8", 
+                        range: "Sep 15-21",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${45 + i}`, 
+                            date: `2025-09-${String(i + 15).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 9", 
+                        range: "Sep 22-28",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${52 + i}`, 
+                            date: `2025-09-${String(i + 22).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 10", 
+                        range: "Sep 29-30",
+                        days: [
+                            { day: "Day 59", date: "2025-09-29" },
+                            { day: "Day 60", date: "2025-09-30" }
+                        ]
+                    }
+                ]
+            },
+            {
+                month: "October 2025",
+                dateRange: "Oct 1 - Oct 31",
+                weeks: [
+                    { 
+                        name: "Week 10 (cont.)", 
+                        range: "Oct 1-5",
+                        days: Array.from({length: 5}, (_, i) => ({ 
+                            day: `Day ${61 + i}`, 
+                            date: `2025-10-${String(i + 1).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 11", 
+                        range: "Oct 6-12",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${66 + i}`, 
+                            date: `2025-10-${String(i + 6).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 12", 
+                        range: "Oct 13-19",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${73 + i}`, 
+                            date: `2025-10-${String(i + 13).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 13", 
+                        range: "Oct 20-26",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${80 + i}`, 
+                            date: `2025-10-${String(i + 20).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 14", 
+                        range: "Oct 27-31",
+                        days: Array.from({length: 5}, (_, i) => ({ 
+                            day: `Day ${87 + i}`, 
+                            date: `2025-10-${String(i + 27).padStart(2, '0')}` 
+                        }))
+                    }
+                ]
+            },
+            {
+                month: "November 2025",
+                dateRange: "Nov 1 - Nov 30",
+                weeks: [
+                    { 
+                        name: "Week 14 (cont.)", 
+                        range: "Nov 1-2",
+                        days: [
+                            { day: "Day 92", date: "2025-11-01" },
+                            { day: "Day 93", date: "2025-11-02" }
+                        ]
+                    },
+                    { 
+                        name: "Week 15", 
+                        range: "Nov 3-9",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${94 + i}`, 
+                            date: `2025-11-${String(i + 3).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 16", 
+                        range: "Nov 10-16",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${101 + i}`, 
+                            date: `2025-11-${String(i + 10).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 17", 
+                        range: "Nov 17-23",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${108 + i}`, 
+                            date: `2025-11-${String(i + 17).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 18", 
+                        range: "Nov 24-30",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${115 + i}`, 
+                            date: `2025-11-${String(i + 24).padStart(2, '0')}` 
+                        }))
+                    }
+                ]
+            },
+            {
+                month: "December 2025",
+                dateRange: "Dec 1 - Dec 31",
+                weeks: [
+                    { 
+                        name: "Week 19", 
+                        range: "Dec 1-7",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${122 + i}`, 
+                            date: `2025-12-${String(i + 1).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 20", 
+                        range: "Dec 8-14",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${129 + i}`, 
+                            date: `2025-12-${String(i + 8).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 21", 
+                        range: "Dec 15-21",
+                        days: Array.from({length: 7}, (_, i) => ({ 
+                            day: `Day ${136 + i}`, 
+                            date: `2025-12-${String(i + 15).padStart(2, '0')}` 
+                        }))
+                    },
+                    { 
+                        name: "Week 22", 
+                        range: "Dec 22-31",
+                        days: Array.from({length: 10}, (_, i) => ({ 
+                            day: `Day ${143 + i}`, 
+                            date: `2025-12-${String(i + 22).padStart(2, '0')}` 
+                        }))
+                    }
+                ]
+            }
+        ];
+
+        // ============================================
+        // RENDER FUNCTIONS
+        // ============================================
+        
+        function renderMonths() {
+            const container = document.getElementById('monthsContainer');
+            
+            internshipData.forEach((monthData, monthIndex) => {
+                const monthSection = document.createElement('div');
+                monthSection.className = 'month-section';
+                monthSection.innerHTML = `
+                    <button class="month-button" data-month="${monthIndex}">
+                        <div class="month-info">
+                            <span class="month-name">${monthData.month}</span>
+                            <span class="month-dates">${monthData.dateRange}</span>
+                        </div>
+                        <span class="month-arrow">›</span>
+                    </button>
+                    <div class="weeks-container" id="weeks-${monthIndex}">
+                        ${renderWeeks(monthData.weeks, monthIndex)}
+                    </div>
+                `;
+                container.appendChild(monthSection);
+            });
+        }
+
+        function renderWeeks(weeks, monthIndex) {
+            return weeks.map((week, weekIndex) => `
+                <div class="week-item">
+                    <button class="week-button" data-month="${monthIndex}" data-week="${weekIndex}">
+                        <div class="week-info">
+                            <span class="week-label">${week.name}</span>
+                            <span class="week-range">${week.range}</span>
+                        </div>
+                        <span class="week-arrow">›</span>
+                    </button>
+                    <div class="days-container" id="days-${monthIndex}-${weekIndex}">
+                        ${renderDays(week.days)}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderDays(days) {
+            return `
+                <div class="days-grid">
+                    ${days.map(day => `
+                        <a href="${GITHUB_REPO}/${day.date}.md" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="day-button">
+                            <span class="day-number">${day.day}</span>
+                            <span class="day-date">${day.date}</span>
+                        </a>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // ============================================
+        // EVENT HANDLERS
+        // ============================================
+        
+        function toggleMonth(monthIndex) {
+            const button = document.querySelector(`.month-button[data-month="${monthIndex}"]`);
+            const weeksContainer = document.getElementById(`weeks-${monthIndex}`);
+            
+            document.querySelectorAll('.month-button').forEach(btn => {
+                if (btn !== button) btn.classList.remove('active');
+            });
+            document.querySelectorAll('.weeks-container').forEach(container => {
+                if (container !== weeksContainer) container.classList.remove('show');
+            });
+            
+            button.classList.toggle('active');
+            weeksContainer.classList.toggle('show');
+            
+            if (!button.classList.contains('active')) {
+                weeksContainer.querySelectorAll('.week-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                weeksContainer.querySelectorAll('.days-container').forEach(container => {
+                    container.classList.remove('show');
+                });
+            }
+        }
+
+        function toggleWeek(monthIndex, weekIndex) {
+            const button = document.querySelector(`.week-button[data-month="${monthIndex}"][data-week="${weekIndex}"]`);
+            const daysContainer = document.getElementById(`days-${monthIndex}-${weekIndex}`);
+            const weeksContainer = document.getElementById(`weeks-${monthIndex}`);
+            
+            weeksContainer.querySelectorAll('.week-button').forEach(btn => {
+                if (btn !== button) btn.classList.remove('active');
+            });
+            weeksContainer.querySelectorAll('.days-container').forEach(container => {
+                if (container !== daysContainer) container.classList.remove('show');
+            });
+            
+            button.classList.toggle('active');
+            daysContainer.classList.toggle('show');
+        }
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            renderMonths();
+            
+            document.getElementById('monthsContainer').addEventListener('click', (e) => {
+                const monthButton = e.target.closest('.month-button');
+                if (monthButton) {
+                    toggleMonth(parseInt(monthButton.dataset.month));
+                    return;
+                }
+                
+                const weekButton = e.target.closest('.week-button');
+                if (weekButton) {
+                    toggleWeek(parseInt(weekButton.dataset.month), parseInt(weekButton.dataset.week));
+                    return;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
